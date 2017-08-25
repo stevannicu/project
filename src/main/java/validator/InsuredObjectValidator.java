@@ -8,7 +8,7 @@ public class InsuredObjectValidator implements BasicValidator<InsuredObject>  {
 	@Override
 	public boolean validate(InsuredObject dataBean) {
 		System.out.println("User 1 feature A");
-		boolean validateMileage = validateMileage(dataBean);
+		boolean validateMileage = false;
 		return validateMileage;
 	}
 
