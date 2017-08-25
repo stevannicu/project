@@ -71,6 +71,7 @@ public class ProductValidator implements BasicValidator<Product> {
 			return validateMileage && validateConstructionYear;
 		}
 		System.out.println("Git first commit");
+		System.out.println("Git user2 commit");
 		return true;
 	}
 
