@@ -42,7 +42,7 @@ public class SalesProductValidator implements BasicValidator<SalesProduct> {
 	}
 	
 	private boolean validateDuration(SalesProduct salesProduct)  {
-		System.out.println("Feature B");
+		System.out.println("Merged feature A and B");
 		DateTime startDate = new DateTime(salesProduct.getContractStart());
 		DateTime endDate = new DateTime(salesProduct.getContractEnd());
 		

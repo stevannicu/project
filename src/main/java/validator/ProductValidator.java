@@ -70,7 +70,7 @@ public class ProductValidator implements BasicValidator<Product> {
 			boolean validateConstructionYear = validateConstructionYear(product);
 			return validateMileage && validateConstructionYear;
 		}
-		
+
 		System.out.println("Git first commit");
 		System.out.println("Git second commit");
 		System.out.println("Git user2 commit");
