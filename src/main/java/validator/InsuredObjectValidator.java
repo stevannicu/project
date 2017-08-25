@@ -12,6 +12,7 @@ public class InsuredObjectValidator implements BasicValidator<InsuredObject>  {
 	}
 
 	private boolean validateMileage(InsuredObject insuredObject){
+		System.out.println("Feature B");
 		if(insuredObject.getMileage()> 250000){
 			return false;
 		}
