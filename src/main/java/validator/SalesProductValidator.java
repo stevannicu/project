@@ -42,6 +42,7 @@ public class SalesProductValidator implements BasicValidator<SalesProduct> {
 	}
 	
 	private boolean validateDuration(SalesProduct salesProduct)  {
+		System.out.println("User 1 feature A");
 		DateTime startDate = new DateTime(salesProduct.getContractStart());
 		DateTime endDate = new DateTime(salesProduct.getContractEnd());
 		
