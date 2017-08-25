@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.ProductDAO" >
+   
+    <insert id="insert" parameterType="model.Product">
+        insert into product(productID,garage,constructionYear,dateOfBirthYoungest,objectValue,region,type,productType,insuredObjectId,salesProductId)
+        values ( #{productID,jdbcType=INTEGER}, #{garage,jdbcType=BOOLEAN},#{constructionYear,jdbcType=INTEGER},#{dateOfBirthYoungest,jdbcType=DATE},#{objectValue,jdbcType=INTEGER},#{region,jdbcType=VARCHAR},#{type,jdbcType=VARCHAR},#{productType,jdbcType=VARCHAR},#{insuredObject.insuredObjectId,jdbcType=INTEGER},#{salesProduct.salesProductId,jdbcType=INTEGER} )
+    </insert>
+   
+</mapper>

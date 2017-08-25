@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+ 
+  	 <context:annotation-config/>
+     
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+     
+   <!--  <context:component-scan base-package="org.stevan.test.resources"/> -->
+   
+    <!--  bean definition -->
+    
+    <bean id="basicService" abstract="true" class="basic.BasicServiceImpl" >
+     </bean>
+     
+     <bean id="salesProductService" parent="basicService" class="serviceImpl.SalesProductServiceImpl">
+     	  <constructor-arg ref="salesProductDAO" index="0"/>
+     	   <constructor-arg ref="salesProductValidator" index="1"/>
+     </bean>
+     
+     <bean id="salesProductDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
+   		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+   		<property name="mapperInterface" value="dao.SalesProductDAO" />
+	</bean> 
+	
+	 <bean id="insuredObjectService" parent="basicService" class="serviceImpl.InsuredObjectServiceImpl">
+     	  <constructor-arg ref="insuredObjectDAO" index="0"/>
+     	  <constructor-arg ref="insuredObjectValidator" index="1"/>
+     </bean>
+     
+     <bean id="insuredObjectDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
+   		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+   		<property name="mapperInterface" value="dao.InsuredObjectDAO" />
+	</bean> 
+	
+	<bean id="productService" parent="basicService" class="serviceImpl.ProductServiceImpl">
+     	  <constructor-arg ref="productDAO" index="0"/>
+     	  <constructor-arg ref="productValidator" index="1"/>
+     </bean>
+     
+     <bean id="productDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
+   		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+   		<property name="mapperInterface" value="dao.ProductDAO" />
+	</bean> 
+	
+	<bean id="elementaryProductService" parent="basicService" class="serviceImpl.ElementaryProductServiceImpl">
+     	  <constructor-arg ref="elementaryProductDAO" index="0"/>
+     	  <constructor-arg ref="elementaryProductValidator" index="1"/>
+     </bean>
+     
+     <bean id="elementaryProductDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
+   		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+   		<property name="mapperInterface" value="dao.ElementaryProductDAO" />
+	</bean> 
+	
+	<bean id="salesProductValidator" class="validator.SalesProductValidator">
+	</bean> 
+	
+	<bean id="insuredObjectValidator" class="validator.InsuredObjectValidator">
+	</bean> 
+	
+	<bean id="productValidator" class="validator.ProductValidator">
+	</bean> 
+	
+	<bean id="elementaryProductValidator" class="validator.ElementaryProductValidator">
+	</bean>
+	
+    <!--  bean definition -->
+    
+    <!-- middleware datasource  -->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
+          p:driverClassName="org.sqlite.JDBC" p:url="jdbc:sqlite:C:\\Users\\STEVAN\\Desktop\\stevaBaze2\\Database.db"
+          p:username="" p:password=""
+          p:initialSize="10"
+		 />
+ 
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="configLocation" value="classpath:configuration.xml" />
+    </bean>
+     
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="dao" />
+    </bean>
+     
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>   
+</beans>	
