@@ -1,0 +1,24 @@
+# Ignore project files
+*.iml
+.idea
+*.DS_Store
+
+# Ignore maven targets
+target
+
+# Ignore release files
+pom.xml.versionsBackup
+pom.xml.releaseBackup
+release.properties
+
+# Ignore vagrant run directore
+development/vagrant/.vagrant
+
+development/vagrant/aem/aem-quickstart-*.jar
+development/vagrant/aem/license.properties
+
+# Ignore vagrant basebox
+development/vagrant/*.box
+
+# Ignore deploy log
+*.log
